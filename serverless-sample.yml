@@ -1,0 +1,22 @@
+service: davis-custom-action-example
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  notifier:
+    # handler: index.handler
+    # handler: node_modules/@dynatrace/oneagent.index$handler
+    handler: index.handler
+    environment:
+      # DT_LAMBDA_OPTIONS: ${ssm:/dynatrace/lambda/sample/DT_LAMBDA_OPTIONS}
+      # DEBUG: dynatrace
+      PHONE_NUMBER: +43123456789
+      MY_NAME: John
+      TEXTBELT_KEY: AAABBBBCCCC1234455
+      DAVIS_CLIENT_SECRET: VVVVVGG-GHHTTT-ZZZUUU
+    events:
+      - http:
+          path: event
+          method: post
